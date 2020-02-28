@@ -164,57 +164,6 @@ namespace CarGenMerger
                 return ExitCode.BadIO;
             }
 
-            //// Create random ordering
-            //Random rand = new Random();
-            //List<int> ordering = new List<int>();
-
-            //for (int i = 0; i < differingCarGens.Count; i++)
-            //{
-            //    int cgIndex = rand.Next(0, maxCapacity);
-            //    ordering.Add(cgIndex);
-
-            //    // TODO: linq
-            //    for (int k = 0; k < maxCapacity; k++)
-            //    {
-            //        ICarGenerator tgt = targetCarGenBlock.ParkedCars[k] as ICarGenerator;
-            //        if (tgt.Position.DistanceTo(differingCarGens[i].Position) < m_opts.Radius)
-            //        {
-            //            // TODO: check for collisions between differing car gens too
-            //            Log("Collision found! (tgt = {0}; src.Pos = <{1:0.###},{2:0.###},{3:0.###}>; tgt.Pos = <{4:0.###},{5:0.###},{6:0.###}>)",
-            //                k,
-            //                differingCarGens[i].Position.X,
-            //                differingCarGens[i].Position.Y,
-            //                differingCarGens[i].Position.Z,
-            //                tgt.Position.X,
-            //                tgt.Position.Y,
-            //                tgt.Position.Z);
-            //        }
-            //    }
-            //}
-
-            //// Replace!
-            //int diffIndex = 0;
-            //foreach (int tgtIndex in ordering)
-            //{
-            //    ICarGenerator replacement = differingCarGens[diffIndex++];
-
-            //    targetCarGenBlock.ParkedCars[tgtIndex] = replacement;
-            //    LogVerbose("Replaced car generator {0} with model {1}.", tgtIndex, replacement.Model);
-            //}
-            //Log("Replaced {0} car generators.", differingCarGens.Count);
-
-            //targetCarGenBlock.NumberOfCarGenerators = maxCapacity;
-            //targetCarGenBlock.NumberOfActiveCarGenerators = maxCapacity;
-
-            //if (!string.IsNullOrEmpty(m_opts.Title))
-            //{
-            //    LogAction("Setting title to {0}", m_opts.Title);
-            //    (target as IGrandTheftAutoSave).SimpleVars.SaveName = m_opts.Title;
-            //}
-
-            //target.Save(m_opts.OutputFile);
-            //Log("Saved file: {0}", m_opts.OutputFile);
-
             return ExitCode.Success;
         }
 

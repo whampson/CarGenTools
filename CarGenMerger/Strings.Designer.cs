@@ -61,7 +61,7 @@ namespace CarGenMerger {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Replaces car generators in the target file with differing car generators from one or more source files. Car generators in the target file are replaced at random, unless a priority list is specified..
+        ///   Looks up a localized string similar to Combines together car generators from multiple GTA3/VC saves. Car generators in the target save are replaced with differing car generators from one or more source saves. Car generators in the target save are replaced at random unless a priority list is specified..
         /// </summary>
         public static string AppDescription {
             get {
@@ -178,7 +178,7 @@ namespace CarGenMerger {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select the save file format..
+        ///   Looks up a localized string similar to The save type..
         /// </summary>
         public static string HelpText_Mode {
             get {
@@ -187,7 +187,7 @@ namespace CarGenMerger {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Specify a path to write the resulting save file. If not provided, the target file path will be used..
+        ///   Looks up a localized string similar to The path to the resulting save. If not provided, the target save will be overwritten..
         /// </summary>
         public static string HelpText_Output {
             get {
@@ -196,7 +196,7 @@ namespace CarGenMerger {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A CSV file of the form (priority,index) specifying the order in which car generators should be replaced, where 0 is the highest priority. The index refers to the index in the target file&apos;s car generator pool. If multiple entries share the same priority, the index to be replaced will be chosen at random. A negative priority will exclude the car generator. Lines beginning with &apos;#&apos; are ignored..
+        ///   Looks up a localized string similar to A CSV file specifying the order in which car generators in the target save should be replaced. The columns are (priority,index) where 0 is the highest priority and index refers to the index of a car generator in the target save&apos;s car generator list. If multiple entries share the same priority, the index for this priority will be chosen at random. A negative priority excludes the car generator from being replaced. Lines beginning with &apos;#&apos; are ignored..
         /// </summary>
         public static string HelpText_PriorityList {
             get {
@@ -205,7 +205,7 @@ namespace CarGenMerger {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Set the collision radius. If two car generators are found within the collision radius, the process will be aborted..
+        ///   Looks up a localized string similar to Set the collision radius. If two car generators are found within the collision radius, the process will be aborted. (TODO: change to skip car conflicts rather than abort?).
         /// </summary>
         public static string HelpText_Radius {
             get {
@@ -214,7 +214,7 @@ namespace CarGenMerger {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Set the in-game name of the resulting save file..
+        ///   Looks up a localized string similar to Set the output save&apos;s in-game title..
         /// </summary>
         public static string HelpText_Title {
             get {

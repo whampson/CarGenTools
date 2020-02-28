@@ -21,7 +21,7 @@ namespace CarGenMerger
         [Option('p', "priority-list", HelpText = "HelpText_PriorityList", ResourceType = typeof(Strings))]
         public string PriorityFile { get; set; }
 
-        [Option('r', "radius", HelpText = "HelpText_Radius", ResourceType = typeof(Strings), Default = 50.0f)]
+        [Option('r', "radius", HelpText = "HelpText_Radius", ResourceType = typeof(Strings), Default = 10.0f)]
         public float CollisionRadius { get; set; }
 
         [Option('t', "title", HelpText = "HelpText_Title", ResourceType = typeof(Strings))]

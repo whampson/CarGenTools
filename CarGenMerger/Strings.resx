@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AppDescription" xml:space="preserve">
-    <value>Replaces car generators in the target file with differing car generators from one or more source files. Car generators in the target file are replaced at random, unless a priority list is specified.</value>
+    <value>Combines together car generators from multiple GTA3/VC saves. Car generators in the target save are replaced with differing car generators from one or more source saves. Car generators in the target save are replaced at random unless a priority list is specified.</value>
   </data>
   <data name="AppName" xml:space="preserve">
     <value>cgmerge</value>
@@ -164,19 +164,19 @@
     <comment>{0} = option name</comment>
   </data>
   <data name="HelpText_Mode" xml:space="preserve">
-    <value>Select the save file format.</value>
+    <value>The save type.</value>
   </data>
   <data name="HelpText_Output" xml:space="preserve">
-    <value>Specify a path to write the resulting save file. If not provided, the target file path will be used.</value>
+    <value>The path to the resulting save. If not provided, the target save will be overwritten.</value>
   </data>
   <data name="HelpText_PriorityList" xml:space="preserve">
-    <value>A CSV file of the form (priority,index) specifying the order in which car generators should be replaced, where 0 is the highest priority. The index refers to the index in the target file's car generator pool. If multiple entries share the same priority, the index to be replaced will be chosen at random. A negative priority will exclude the car generator. Lines beginning with '#' are ignored.</value>
+    <value>A CSV file specifying the order in which car generators in the target save should be replaced. The columns are (priority,index) where 0 is the highest priority and index refers to the index of a car generator in the target save's car generator list. If multiple entries share the same priority, the index for this priority will be chosen at random. A negative priority excludes the car generator from being replaced. Lines beginning with '#' are ignored.</value>
   </data>
   <data name="HelpText_Radius" xml:space="preserve">
-    <value>Set the collision radius. If two car generators are found within the collision radius, the process will be aborted.</value>
+    <value>Set the collision radius. If two car generators are found within the collision radius, the process will be aborted. (TODO: change to skip car conflicts rather than abort?)</value>
   </data>
   <data name="HelpText_Title" xml:space="preserve">
-    <value>Set the in-game name of the resulting save file.</value>
+    <value>Set the output save's in-game title.</value>
   </data>
   <data name="HelpText_Verbose" xml:space="preserve">
     <value>Enable verbose output.</value>
