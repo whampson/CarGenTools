@@ -3,16 +3,16 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <AssemblyVersion>0.1.0.300</AssemblyVersion>
-    <FileVersion>0.1.0.300</FileVersion>
+    <AssemblyVersion>1.0.0.307</AssemblyVersion>
+    <FileVersion>1.0.0.307</FileVersion>
     <Authors>Wes Hampson</Authors>
     <Copyright>Copyright (C) 2019-2020 Wes Hampson</Copyright>
-    <Version>0.1.0-alpha-300</Version>
+    <Version>1.0.0-rc1</Version>
     <Product>CarGenMerger</Product>
     <PackageId>CarGenMerger</PackageId>
     <AssemblyName>cgmerge</AssemblyName>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <Description>Replaces car generators in the target file with differing car generators from one or more source files.</Description>
+    <Description>A command-line tool that imports modified car generators from one or more GTA savefiles into one target savefile.</Description>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
 
@@ -35,7 +35,7 @@
     <UpdateAssemblyFileVersion>False</UpdateAssemblyFileVersion>
     <UpdateAssemblyInfoVersion>False</UpdateAssemblyInfoVersion>
     <UpdatePackageVersion>True</UpdatePackageVersion>
-    <PackageVersionSettings>AssemblyVersion.NoneWithAutoReset.Alpha</PackageVersionSettings>
+    <PackageVersionSettings>AssemblyVersion.NoneWithAutoReset.Beta</PackageVersionSettings>
     <AssemblyInfoVersionType>SettingsVersion</AssemblyInfoVersionType>
     <InheritWinAppVersionFrom>None</InheritWinAppVersionFrom>
   </PropertyGroup>
