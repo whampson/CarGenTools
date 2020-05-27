@@ -7,22 +7,6 @@ using System.Threading;
 
 namespace CarGenMerger
 {
-    public enum ExitCode
-    {
-        Success = 0,
-        BadCommandLine = 1,
-        BadIO = 2,
-        Collision = 3,
-
-        UnknownError = 127
-    }
-
-    public enum Mode
-    {
-        GTA3,
-        VC
-    }
-
     internal static class Program
     {
         private static ExitCode ExitStatus;
@@ -133,5 +117,21 @@ namespace CarGenMerger
                 ExitStatus = m.Merge();
             }
         }
+    }
+
+    public enum ExitCode
+    {
+        Success = 0,
+        BadCommandLine = 1,
+        BadIO = 2,
+        Collision = 3,
+
+        UnknownError = 127
+    }
+
+    public enum Mode
+    {
+        GTA3,
+        VC
     }
 }

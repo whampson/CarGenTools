@@ -1,4 +1,4 @@
-﻿using GTASaveData.Common;
+﻿using GTASaveData.Types.Interfaces;
 using System.Collections.Generic;
 
 namespace CarGenMerger
@@ -9,8 +9,8 @@ namespace CarGenMerger
     {
         public int Compare(ICarGenerator x, ICarGenerator y)
         {
-            double magX = x.Position.Magnitude;
-            double magY = y.Position.Magnitude;
+            double magX = x.Position.GetMagnitude();
+            double magY = y.Position.GetMagnitude();
 
             if (magX < magY)
             {
@@ -29,8 +29,8 @@ namespace CarGenMerger
             return x.Model.Equals(y.Model)
                 && x.Position.Equals(y.Position)
                 && x.Heading.Equals(y.Heading)
-                && x.AlarmChance.Equals(y.AlarmChance)
-                && x.LockedChance.Equals(y.LockedChance)
+                && x.Color1.Equals(y.Color1)
+                && x.Color2.Equals(y.Color2)
                 && x.Enabled.Equals(y.Enabled);
         }
 
@@ -38,12 +38,10 @@ namespace CarGenMerger
         {
             int hash = 17;
             hash += 23 * obj.Model.GetHashCode();
-            hash += 23 * obj.Position.X.GetHashCode();
-            hash += 23 * obj.Position.Y.GetHashCode();
-            hash += 23 * obj.Position.Z.GetHashCode();
+            hash += 23 * obj.Position.GetHashCode();
             hash += 23 * obj.Heading.GetHashCode();
-            hash += 23 * obj.AlarmChance.GetHashCode();
-            hash += 23 * obj.LockedChance.GetHashCode();
+            hash += 23 * obj.Color1.GetHashCode();
+            hash += 23 * obj.Color2.GetHashCode();
             hash += 23 * obj.Enabled.GetHashCode();
 
             return hash;

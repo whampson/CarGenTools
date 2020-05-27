@@ -1,7 +1,7 @@
 ﻿using GTASaveData;
-using GTASaveData.Common;
-using GTASaveData.Common.Blocks;
 using GTASaveData.GTA3;
+using GTASaveData.Types;
+using GTASaveData.Types.Interfaces;
 using GTASaveData.VC;
 using Microsoft.VisualBasic.FileIO;
 using System;
@@ -9,10 +9,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-using GTA3CarGenerator = GTASaveData.GTA3.CarGenerator;
-using GTA3CarGeneratorBlock = GTASaveData.GTA3.Blocks.CarGeneratorBlock;
-using VCCarGenerator = GTASaveData.VC.CarGenerator;
-using VCCarGeneratorBlock = GTASaveData.VC.Blocks.CarGeneratorBlock;
+using GTA3CarGen = GTASaveData.GTA3.CarGenerator;
+using GTA3CarGenBlock = GTASaveData.GTA3.CarGeneratorData;
+using VCCarGen = GTASaveData.VC.CarGenerator;
+using VCCarGenBlock = GTASaveData.VC.CarGeneratorData;
 
 namespace CarGenMerger
 {
@@ -26,12 +26,12 @@ namespace CarGenMerger
         private readonly Random m_rand;
         
         private ICarGeneratorBlock m_targetCarGenBlock;
-        private GrandTheftAutoSave m_targetSave;
+        private GTASaveFile m_targetSave;
 
         private static readonly Dictionary<Mode, int> CarGeneratorMaxCapacity = new Dictionary<Mode, int>()
         {
-            { Mode.GTA3, GTA3CarGeneratorBlock.Limits.CarGeneratorsCapacity },
-            { Mode.VC, VCCarGeneratorBlock.Limits.CarGeneratorsCapacity },
+            { Mode.GTA3, GTA3CarGenBlock.Limits.MaxNumCarGenerators },
+            { Mode.VC, VCCarGenBlock.Limits.MaxNumCarGenerators },
         };
         private int MaxCapacity => CarGeneratorMaxCapacity[m_opts.Mode];
 
@@ -58,15 +58,15 @@ namespace CarGenMerger
             {
                 return ExitCode.BadIO;
             }
-            m_targetCarGenBlock = (m_targetSave as IGrandTheftAutoSave).CarGenerators;
+            m_targetCarGenBlock = GetCarGenBlock(m_targetSave);
 
             foreach (string path in m_opts.SourceFiles)
             {
-                if (!TryOpenSaveData(path, out GrandTheftAutoSave src))
+                if (!TryOpenSaveData(path, out GTASaveFile src))
                 {
                     return ExitCode.BadIO;
                 }
-                m_sourceCarGenBlocks.Add((src as IGrandTheftAutoSave).CarGenerators);
+                m_sourceCarGenBlocks.Add(GetCarGenBlock(src));
             }
 
             if (m_userProvidedPriorityMap)
@@ -90,8 +90,8 @@ namespace CarGenMerger
             {
                 for (int i = 0; i < MaxCapacity; i++)
                 {
-                    ICarGenerator tgt = m_targetCarGenBlock.ParkedCars.ElementAt(i);
-                    ICarGenerator src = cgBlock.ParkedCars.ElementAt(i);
+                    ICarGenerator tgt = m_targetCarGenBlock[i];
+                    ICarGenerator src = cgBlock[i];
                     if (src.Model != 0 && !cgComparer.Equals(src, tgt))
                     {
                         differingCarGens.Add(src);
@@ -129,13 +129,14 @@ namespace CarGenMerger
                 
                 if (CheckForCollision(replacement, out int colIdx, out double colDist))
                 {
-                    Logger.Error("Collision found at <{0:0.###},{1:0.###},{2:0.###}>! (index = {3}, distance = {4:0.###})\n",
-                        replacement.Position.X, replacement.Position.Y, replacement.Position.Z,
-                        colIdx, colDist);
+                    ICarGenerator collidedWith = m_targetCarGenBlock[colIdx];
+                    Logger.Error("Error: Collision detected!\n" +
+                        "Model {0} at ({1}) in source collides with model {2} at ({3}) in target. (distance = {4:0.###}, target index = {5})",
+                        replacement.Model, replacement.Position, collidedWith.Model, collidedWith.Position, colDist, colIdx);
                     return ExitCode.Collision;
                 }
 
-                m_targetCarGenBlock.SetParkedCar(cgIndex, replacement);
+                SetCarGen(cgIndex, replacement);
                 Logger.InfoVerbose("Replaced car generator {0} with model {1}.\n", cgIndex, replacement.Model);
             }
             Logger.Info("{0} car generator{1} replaced.\n", numReplaced, Pluralize(numReplaced));
@@ -143,12 +144,12 @@ namespace CarGenMerger
 
             Logger.InfoVerbose(">> Setting number of car generators to {0}...\n", MaxCapacity);
             m_targetCarGenBlock.NumberOfCarGenerators = MaxCapacity;
-            m_targetCarGenBlock.NumberOfActiveCarGenerators = MaxCapacity;
+            m_targetCarGenBlock.CurrentActiveCount = MaxCapacity;
 
             if (m_setTitle)
             {
                 Logger.InfoVerbose(">> Setting save title...\n");
-                (m_targetSave as IGrandTheftAutoSave).SimpleVars.SaveName = m_opts.OutputTitle;
+                m_targetSave.Name = m_opts.OutputTitle;
             }
 
             try
@@ -160,14 +161,14 @@ namespace CarGenMerger
             catch (IOException e)
             {
                 Logger.InfoVerbose(" failed!\n");
-                Logger.Error($"{e.GetType().Name}: {e.Message}");
+                Logger.Error($"Error: {e.GetType().Name}: {e.Message}");
                 return ExitCode.BadIO;
             }
 
             return ExitCode.Success;
         }
 
-        private bool TryOpenSaveData(string path, out GrandTheftAutoSave data)
+        private bool TryOpenSaveData(string path, out GTASaveFile data)
         {
             const int LeftPadLength = 12;
             string errMsg = "";
@@ -179,10 +180,10 @@ namespace CarGenMerger
                 switch (m_opts.Mode)
                 {
                     case Mode.GTA3:
-                        data = GrandTheftAutoSave.Load<GTA3Save>(path);
+                        data = GTASaveFile.Load<GTA3Save>(path);
                         break;
                     case Mode.VC:
-                        data = GrandTheftAutoSave.Load<ViceCitySave>(path);
+                        data = GTASaveFile.Load<ViceCitySave>(path);
                         break;
                 }
                 Logger.InfoVerbose(" success!\n");
@@ -198,7 +199,7 @@ namespace CarGenMerger
                 errMsg = (string.IsNullOrEmpty(errMsg))
                     ? string.Format(Strings.ErrorText_FailedToOpenFile, path)
                     : errMsg;
-                Logger.Error(errMsg);
+                Logger.Error("Error: " + errMsg);
 
                 return false;
             }
@@ -212,6 +213,36 @@ namespace CarGenMerger
             Logger.InfoVerbose(data.FileFormat + "\n");
 
             return true;
+        }
+
+        private ICarGeneratorBlock GetCarGenBlock(GTASaveFile save)
+        {
+            ICarGeneratorBlock carGens = null;
+            switch (m_opts.Mode)
+            {
+                case Mode.GTA3:
+                    carGens = (save as GTA3Save).CarGenerators;
+                    break;
+                case Mode.VC:
+                    carGens = (save as ViceCitySave).CarGenerators;
+                    break;
+            }
+
+            return carGens;
+        }
+
+        private void SetCarGen(int index, ICarGenerator value)
+        {
+            value.Timer = 0;
+
+            if (m_opts.Mode == Mode.GTA3)
+            {
+                (m_targetCarGenBlock as GTA3CarGenBlock).CarGenerators[index] = value as GTA3CarGen;
+            }
+            else if (m_opts.Mode == Mode.VC)
+            {
+                (m_targetCarGenBlock as VCCarGenBlock).CarGenerators[index] = value as VCCarGen;
+            }
         }
 
         private bool LoadPriorityMap()
@@ -271,7 +302,7 @@ namespace CarGenMerger
             catch (IOException e)
             {
                 Logger.InfoVerbose(" failed!\n");
-                Logger.Error($"{e.GetType().Name}: {e.Message}");
+                Logger.Error($"Error: {e.GetType().Name}: {e.Message}");
                 ret = false;
             }
 
@@ -282,7 +313,7 @@ namespace CarGenMerger
         {
             m_priorityMap.Clear();
 
-            var indices = Enumerable.Range(0, MaxCapacity).OrderBy(e => m_rand.Next());
+            var indices = Enumerable.Range(0, MaxCapacity)/*.OrderBy(e => m_rand.Next())*/;
 
             int i = 0;
             foreach (int index in indices)
@@ -296,11 +327,16 @@ namespace CarGenMerger
             collidedIndex = -1;
             distance = 0;
 
+            if (m_opts.CollisionRadius <= 0)
+            {
+                return false;
+            }
+
             bool collision = false;
             int index = 0;
-            foreach (ICarGenerator tgtCg in m_targetCarGenBlock.ParkedCars)
+            foreach (ICarGenerator tgtCg in m_targetCarGenBlock.CarGenerators)
             {
-                double dist = cg.Position.DistanceTo(tgtCg.Position);
+                double dist = Vector3D.Distance(cg.Position, tgtCg.Position);
                 if (dist <= m_opts.CollisionRadius)
                 {
                     collision = true;

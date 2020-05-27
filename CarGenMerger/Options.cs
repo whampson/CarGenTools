@@ -12,7 +12,7 @@ namespace CarGenMerger
         [Value(1, Required = true, Hidden = true)]
         public IEnumerable<string> SourceFiles { get; set; }
 
-        [Option('m', "mode", HelpText = "HelpText_Mode", ResourceType = typeof(Strings), Default = Game.GTA3)]
+        [Option('m', "mode", HelpText = "HelpText_Mode", ResourceType = typeof(Strings), Default = Mode.GTA3)]
         public Mode Mode { get; set; }
 
         [Option('o', "output", HelpText = "HelpText_Output", ResourceType = typeof(Strings))]

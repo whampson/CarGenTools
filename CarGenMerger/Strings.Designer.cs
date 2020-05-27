@@ -61,7 +61,7 @@ namespace CarGenMerger {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Combines together car generators from multiple GTA3/VC saves. Car generators in the target save are replaced with differing car generators from one or more source saves. Car generators in the target save are replaced at random unless a priority list is specified..
+        ///   Looks up a localized string similar to Merges differing car generators from one or more &apos;source&apos; savefiles into one &apos;target&apos; savefile. Merging occurs by first comparing the car generators from the source files against the car generators in the target file for differences, then replacing the differing car generators in the target file with car generators from the source files..
         /// </summary>
         public static string AppDescription {
             get {
@@ -88,7 +88,7 @@ namespace CarGenMerger {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to cgmerge [options] target source [source2 [...]].
+        ///   Looks up a localized string similar to cgmerge [options] target source....
         /// </summary>
         public static string AppUsage {
             get {
@@ -178,7 +178,7 @@ namespace CarGenMerger {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The save type..
+        ///   Looks up a localized string similar to Set whether to merge car generators from GTA3 or Vice City savefiles..
         /// </summary>
         public static string HelpText_Mode {
             get {
@@ -187,7 +187,7 @@ namespace CarGenMerger {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The path to the resulting save. If not provided, the target save will be overwritten..
+        ///   Looks up a localized string similar to Set the path to the resulting savefile. If not specified, the target file will be overwritten..
         /// </summary>
         public static string HelpText_Output {
             get {
@@ -196,7 +196,7 @@ namespace CarGenMerger {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A CSV file specifying the order in which car generators in the target save should be replaced. The columns are (priority,index) where 0 is the highest priority and index refers to the index of a car generator in the target save&apos;s car generator list. If multiple entries share the same priority, the index for this priority will be chosen at random. A negative priority excludes the car generator from being replaced. Lines beginning with &apos;#&apos; are ignored..
+        ///   Looks up a localized string similar to A CSV file specifying the order in which to replace car generators. The columns are (priority,index) where &apos;priority&apos; represents the replacement order and &apos;index&apos; specifies the index of a car generator in the target save&apos;s car generator list. A priority of 0 is the highest priority. A negative priority will exclude row from replacement. If multiple rows share the same priority, one of the rows will be chosen at random and this process will repeat until all have been chosen exactly once. Lines beginning with [rest of string was truncated]&quot;;.
         /// </summary>
         public static string HelpText_PriorityList {
             get {
@@ -205,7 +205,7 @@ namespace CarGenMerger {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Set the collision radius. If two car generators are found within the collision radius, the process will be aborted. (TODO: change to skip car conflicts rather than abort?).
+        ///   Looks up a localized string similar to Set the collision radius. If two car generators are found within the collision radius, the merge process will be aborted..
         /// </summary>
         public static string HelpText_Radius {
             get {
@@ -214,7 +214,7 @@ namespace CarGenMerger {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Set the output save&apos;s in-game title..
+        ///   Looks up a localized string similar to Set the in-game title of the target savefile..
         /// </summary>
         public static string HelpText_Title {
             get {
@@ -223,7 +223,7 @@ namespace CarGenMerger {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Enable verbose output..
+        ///   Looks up a localized string similar to Enable verbose output for hackers..
         /// </summary>
         public static string HelpText_Verbose {
             get {
