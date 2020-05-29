@@ -1,9 +1,9 @@
 ﻿using GTASaveData.Types.Interfaces;
 using System.Collections.Generic;
 
-namespace CarGenMerger
+namespace CarGenTools.CarGenMerge
 {
-    public class CarGeneratorComparer :
+    public class CarGenComparer :
         IComparer<ICarGenerator>,
         IEqualityComparer<ICarGenerator>
     {

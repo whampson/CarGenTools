@@ -2,15 +2,11 @@
 A command-line tool that imports modified car generators from one or more GTA
 savefiles into one target savefile.
 
-## Installation
-### Install as .NET Tool (Recommended)
-1) Install [.NET Core Runtime 3.1](https://dotnet.microsoft.com/download/dotnet-core/3.1)
-2) Download the .nupkg from the [latest release](https://github.com/whampson/cgmerge/releases).
-3) Open a shell, navigate to where you saved the .nupkg, and run the following:
-  ```dotnet install --global --add-source . cgmerge```
-4) Verify that the installation was successful by running `cgmerge` from the shell.
+## Supported Games
+* *Grand Theft Auto III*
+* *Grand Theft Auto: Vice City*
 
-### Standalone Installation
+## Installation
 1) Download the [latest release](https://github.com/whampson/cgmerge/releases) for your system.
 2) Extract the archive.
 3) Open a shell, navigate to where you extracted the archive, and run `cgmerge`.
@@ -18,7 +14,7 @@ savefiles into one target savefile.
 ## Usage
 ```
 $ cgmerge --help
-GTA Car Generator Merger Tool
+GTA Car Generator Merge Tool
 Copyright (C) 2019-2020 Wes Hampson
 
 cgmerge [options] target source...

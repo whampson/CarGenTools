@@ -3,19 +3,20 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <AssemblyVersion>1.0.0.317</AssemblyVersion>
-    <FileVersion>1.0.0.317</FileVersion>
+    <AssemblyVersion>1.0.0.107</AssemblyVersion>
+    <FileVersion>1.0.0.106</FileVersion>
     <Authors>Wes Hampson</Authors>
-    <Copyright>Copyright (C) 2019-2020 Wes Hampson</Copyright>
-    <Version>1.0.0-rc2</Version>
-    <Product>CarGenMerger</Product>
-    <PackageId>cgmerge</PackageId>
-    <AssemblyName>cgmerge</AssemblyName>
+    <Copyright>Copyright (C) 2020 Wes Hampson</Copyright>
+    <Version>1.0.0-beta-103</Version>
+    <Product>CarGenTools</Product>
+    <PackageId>CarGenImport</PackageId>
+    <AssemblyName>cgimport</AssemblyName>
+    <ToolCommandName>cgimport</ToolCommandName>
+    <Title>GTA Car Generator Import Tool</Title>
+    <Description>Imports car generators from a JSON file into a GTA3/VC savedata file.</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <Description>A command-line tool that imports modified car generators from one or more GTA savefiles into one target savefile.</Description>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <PackAsTool>true</PackAsTool>
-    <ToolCommandName>cgmerge</ToolCommandName>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -47,30 +48,19 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CarGenTools\CarGenTools.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="GTASaveData.Core">
-      <HintPath>lib\GTASaveData.Core.dll</HintPath>
+      <HintPath>..\lib\GTASaveData.Core.dll</HintPath>
     </Reference>
     <Reference Include="GTASaveData.GTA3">
-      <HintPath>lib\GTASaveData.GTA3.dll</HintPath>
+      <HintPath>..\lib\GTASaveData.GTA3.dll</HintPath>
     </Reference>
     <Reference Include="GTASaveData.VC">
-      <HintPath>.lib\GTASaveData.VC.dll</HintPath>
+      <HintPath>..\lib\GTASaveData.VC.dll</HintPath>
     </Reference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Update="Strings.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Strings.resx</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Update="Strings.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
   </ItemGroup>
 
 </Project>

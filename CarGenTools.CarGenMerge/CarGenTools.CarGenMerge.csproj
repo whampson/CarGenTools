@@ -1,0 +1,66 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AssemblyVersion>1.0.0.343</AssemblyVersion>
+    <FileVersion>1.0.0.343</FileVersion>
+    <Authors>Wes Hampson</Authors>
+    <Copyright>Copyright (C) 2020 Wes Hampson</Copyright>
+    <Version>1.0.0-beta-24</Version>
+    <Product>CarGenTools</Product>
+    <PackageId>CarGenMerge</PackageId>
+    <AssemblyName>cgmerge</AssemblyName>
+    <ToolCommandName>cgmerge</ToolCommandName>
+    <Title>GTA Car Generator Merge Tool</Title>
+    <Description>Combines car generators from one or more GTA3/VC savedata files into a single savedata file.</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <PackAsTool>true</PackAsTool>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <ShouldCreateLogs>True</ShouldCreateLogs>
+    <AdvancedSettingsExpanded>False</AdvancedSettingsExpanded>
+    <UpdateAssemblyVersion>False</UpdateAssemblyVersion>
+    <UpdateAssemblyFileVersion>False</UpdateAssemblyFileVersion>
+    <UpdateAssemblyInfoVersion>False</UpdateAssemblyInfoVersion>
+    <UpdatePackageVersion>False</UpdatePackageVersion>
+    <InheritWinAppVersionFrom>None</InheritWinAppVersionFrom>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <ShouldCreateLogs>True</ShouldCreateLogs>
+    <AdvancedSettingsExpanded>False</AdvancedSettingsExpanded>
+    <UpdateAssemblyVersion>False</UpdateAssemblyVersion>
+    <UpdateAssemblyFileVersion>False</UpdateAssemblyFileVersion>
+    <UpdateAssemblyInfoVersion>True</UpdateAssemblyInfoVersion>
+    <UpdatePackageVersion>True</UpdatePackageVersion>
+    <PackageVersionSettings>AssemblyVersion.NoneWithAutoReset.Beta</PackageVersionSettings>
+    <AssemblyInfoVersionType>SettingsVersion</AssemblyInfoVersionType>
+    <InheritWinAppVersionFrom>None</InheritWinAppVersionFrom>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommandLineParser" Version="2.8.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="WpfEssentials" Version="1.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CarGenTools\CarGenTools.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="GTASaveData.Core">
+      <HintPath>..\lib\GTASaveData.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="GTASaveData.GTA3">
+      <HintPath>..\lib\GTASaveData.GTA3.dll</HintPath>
+    </Reference>
+    <Reference Include="GTASaveData.VC">
+      <HintPath>..\lib\GTASaveData.VC.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
