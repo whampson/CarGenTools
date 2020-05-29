@@ -11,7 +11,7 @@ A set of tools for manipulating car generators in GTA savedata files.
 
 ## Installation
 ### Install as .NET Core Tools (Recommended)
-1) Download and install [.NET Core](https://dotnet.microsoft.com/download).
+1) Download and install the [.NET Core Runtime](https://dotnet.microsoft.com/download/dotnet-core/current/runtime).
 2) Open a shell and run the following to install each tool.
 ```
 $ dotnet tool install -g CarGenImport
