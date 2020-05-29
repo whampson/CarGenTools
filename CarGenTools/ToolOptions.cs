@@ -13,7 +13,9 @@ namespace CarGenTools
         [Option('v', "verbose", HelpText = "Enable verbose output for hackers.")]
         public bool Verbose { get; set; }
 
+#if DEBUG
         [Option('d', "debug", HelpText = "Pause until a debugger is attached.")]
+#endif
         public bool Debug { get; set; }
     }
 }
