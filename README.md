@@ -17,11 +17,13 @@ A set of tools for manipulating car generators in GTA savedata files.
 $ dotnet tool install -g CarGenImport
 $ dotnet tool install -g CarGenMerge
 ```
-3) Now you can run `cgimport` and `cgmerge` from your shell!
+3) Run `cgimport` or `cgmerge` from anywhere on your system.
 
 ### Standalone Installation
-1) Download and extract the [latest](https://github.com/whampson/CarGenTools/releases)
-standalone release for your system.
+1) Download and extract the [latest standalone release](https://github.com/whampson/CarGenTools/releases)
+for your system.
+2) Open a shell and navigate to the extraction directory.
+3) Run `cgimport` or `cgmerge`.
 
 ## Usage
 ### cgimport
