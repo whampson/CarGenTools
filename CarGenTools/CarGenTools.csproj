@@ -2,11 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <AssemblyVersion>1.0.1.57</AssemblyVersion>
-    <FileVersion>1.0.1.57</FileVersion>
+    <AssemblyVersion>1.0.1.59</AssemblyVersion>
+    <FileVersion>1.0.1.59</FileVersion>
     <Authors>Wes Hampson</Authors>
     <Copyright>Copyright (C) 2020 Wes Hampson</Copyright>
-    <Version>1.0.1-beta-02</Version>
+    <Version>1.0.1</Version>
     <Product>CarGenTools</Product>
     <AssemblyName>CarGenTools</AssemblyName>
     <Title>GTA Car Generator Tools</Title>

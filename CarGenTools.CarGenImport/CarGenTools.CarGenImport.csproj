@@ -3,11 +3,11 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <AssemblyVersion>1.0.1.115</AssemblyVersion>
-    <FileVersion>1.0.1.115</FileVersion>
+    <AssemblyVersion>1.0.1.117</AssemblyVersion>
+    <FileVersion>1.0.1.117</FileVersion>
     <Authors>Wes Hampson</Authors>
     <Copyright>Copyright (C) 2020 Wes Hampson</Copyright>
-    <Version>1.0.1-beta-06</Version>
+    <Version>1.0.1</Version>
     <Product>CarGenTools</Product>
     <PackageId>CarGenImport</PackageId>
     <AssemblyName>cgimport</AssemblyName>

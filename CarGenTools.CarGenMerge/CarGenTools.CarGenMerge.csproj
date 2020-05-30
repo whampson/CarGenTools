@@ -3,11 +3,11 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <AssemblyVersion>1.0.1.355</AssemblyVersion>
-    <FileVersion>1.0.1.355</FileVersion>
+    <AssemblyVersion>1.0.1.357</AssemblyVersion>
+    <FileVersion>1.0.1.357</FileVersion>
     <Authors>Wes Hampson</Authors>
     <Copyright>Copyright (C) 2020 Wes Hampson</Copyright>
-    <Version>1.0.1-beta-10</Version>
+    <Version>1.0.1</Version>
     <Product>CarGenTools</Product>
     <PackageId>CarGenMerge</PackageId>
     <AssemblyName>cgmerge</AssemblyName>
