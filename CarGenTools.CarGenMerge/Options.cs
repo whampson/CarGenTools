@@ -14,7 +14,7 @@ namespace CarGenTools.CarGenMerge
         [Option('p', "priority-list", HelpText = PriorityListHelp)]
         public string PriorityFile { get; set; }
 
-        [Option('r', "radius", HelpText = RadiusHelp, Default = 2.5f)]
+        [Option('r', "radius", HelpText = RadiusHelp, Default = 5.0f)]
         public float Radius { get; set; }
 
         [Option('t', "title", HelpText = TitleHelp)]

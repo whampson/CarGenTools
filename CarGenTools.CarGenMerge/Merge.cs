@@ -35,12 +35,14 @@ namespace CarGenTools.CarGenMerge
 
         private void UpdateCarGenMetadata(ICarGeneratorData carGens)
         {
-            carGens.NumberOfValidCarGenerators = 0;
+            carGens.NumberOfCarGenerators = MaxCapacity;
             carGens.NumberOfEnabledCarGenerators = 0;
             foreach (ICarGenerator g in carGens.CarGenerators)
             {
-                if (g.Model != 0) carGens.NumberOfValidCarGenerators++;
-                if (g.Model != 0 && g.Enabled) carGens.NumberOfEnabledCarGenerators++;
+                if (g.Model != 0 && g.Enabled)
+                {
+                    carGens.NumberOfEnabledCarGenerators++;
+                }
             }
         }
 
@@ -74,8 +76,9 @@ namespace CarGenTools.CarGenMerge
                 {
                     ICarGenerator tgt = (targetSave as ISaveData).CarGenerators[i];
                     ICarGenerator src = (sourceSave as ISaveData).CarGenerators[i];
-                    if (src.Model != 0 && tgt.Model != 0 && !cgComparer.Equals(src, tgt))
+                    if (src.Model != 0 && !cgComparer.Equals(src, tgt))
                     {
+                        Log.InfoF($"Difference found in slot {i}.");
                         differingCarGens.Add(src);
                         numDifferingThisSave++;
                     }
@@ -107,7 +110,7 @@ namespace CarGenTools.CarGenMerge
                 ICarGenerator cg = differingCarGens[numReplaced++];
                 if (CheckForCollision(targetCarGens, cg, out int idx, out double dist))
                 {
-                    Log.Error($"Collision found: Location = {targetCarGens[idx].Position}; Distance = {dist:0.###}, Radius = {Options.Radius:0.###}");
+                    Log.Error($"Collision found: Slot = {idx}; Location = {targetCarGens[idx].Position}; Distance = {dist:0.###}");
                     Result = ExitCode.Error;
                     return;
                 }
