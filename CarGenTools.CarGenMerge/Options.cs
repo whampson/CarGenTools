@@ -14,7 +14,7 @@ namespace CarGenTools.CarGenMerge
         [Option('p', "priority-list", HelpText = PriorityListHelp)]
         public string PriorityFile { get; set; }
 
-        [Option('r', "radius", HelpText = RadiusHelp, Default = 10.0f)]
+        [Option('r', "radius", HelpText = RadiusHelp, Default = 2.5f)]
         public float Radius { get; set; }
 
         [Option('t', "title", HelpText = TitleHelp)]
@@ -25,10 +25,10 @@ namespace CarGenTools.CarGenMerge
         private const string PriorityListHelp =
             "A CSV file specifying the order in which to replace car generators. The columns are (priority,index) " +
             "where 'priority' represents the replacement order and 'index' specifies the index of a car generator " +
-            "in the target save's car generator list. A priority of 0 is the highest priority. A negative priority " +
-            "will exclude row from replacement. If multiple rows share the same priority, one of the rows will be " +
-            "chosen at random and this process will repeat until all have been chosen exactly once. Lines beginning " +
-            "with '#' are treated as comments and ignored. If no priority list is specified, car generators will be " +
-            "replaced at random.";
+            "in the target save's car generator list. A priority of 0 is the highest priority and thus the first to " +
+            "be replaced. A negative priority will exclude a row. If multiple rows share the same priority, one of " +
+            "the rows will be chosen at random until all rows have been chosen exactly once. Lines beginning with '#' " +
+            "are treated as comments and ignored. If no priority list is specified, car generators will be replaced at " +
+            "random.";
     }
 }

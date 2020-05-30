@@ -242,39 +242,4 @@ namespace CarGenTools.CarGenMerge
             { Game.VC, VCCarGenBlock.Limits.MaxNumCarGenerators },
         };
     }
-
-    //public class Merger : Tool<Options>
-    //{
-
-    //    private ICarGeneratorBlock GetCarGenBlock(GTASaveFile save)
-    //    {
-    //        ICarGeneratorBlock carGens = null;
-    //        switch (m_opts.Mode)
-    //        {
-    //            case Mode.GTA3:
-    //                carGens = (save as GTA3Save).CarGenerators;
-    //                break;
-    //            case Mode.VC:
-    //                carGens = (save as ViceCitySave).CarGenerators;
-    //                break;
-    //        }
-
-    //        return carGens;
-    //    }
-
-    //    private void SetCarGen(int index, ICarGenerator value)
-    //    {
-    //        value.Timer = 0;
-
-    //        if (m_opts.Mode == Mode.GTA3)
-    //        {
-    //            (m_targetCarGenBlock as GTA3CarGenBlock).CarGenerators[index] = value as GTA3CarGen;
-    //        }
-    //        else if (m_opts.Mode == Mode.VC)
-    //        {
-    //            (m_targetCarGenBlock as VCCarGenBlock).CarGenerators[index] = value as VCCarGen;
-    //        }
-    //    }
-
-    //}
 }
