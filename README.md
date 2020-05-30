@@ -59,19 +59,20 @@ cgmerge [options] target source...
 Combines car generators from one or more GTA3/VC savedata files into a single savedata file. Merging
 occurs by first comparing the car generators from each source file against the car generators in the
 target file slot-by-slot, then replacing the differing car generators in the target file with car
-generators from the source files. Car generators with the Model set to 0 are ignored.
+generators from the source files. Car generators in the source files with the Model set to 0 are
+ignored.
 
 
   -p, --priority-list    A CSV file specifying the order in which to replace car generators. The
                          columns are (priority,index) where 'priority' represents the replacement
                          order and 'index' specifies the index of a car generator in the target
-                         save's car generator list. A priority of 0 is the highest priority. A
-                         negative priority will exclude row from replacement. If multiple rows share
-                         the same priority, one of the rows will be chosen at random and this
-                         process will repeat until all have been chosen exactly once. Lines
-                         beginning with '#' are treated as comments and ignored. If no priority list
-                         is specified, car generators will be replaced at random.
-  -r, --radius           (Default: 10) Set the collision radius. If two car generators are found
+                         save's car generator list. A priority of 0 is the highest priority and thus
+                         the first to be replaced. A negative priority will exclude a row. If
+                         multiple rows share the same priority, one of the rows will be chosen at
+                         random until all rows have been chosen exactly once. Lines beginning with
+                         '#' are treated as comments and ignored. If no priority list is specified,
+                         car generators will be replaced at random.
+  -r, --radius           (Default: 5) Set the collision radius. If two car generators are found
                          within the collision radius, the merge process will be aborted.
   -t, --title            Set the in-game title of the target savefile.
   -g, --game             (Default: GTA3) Select the game to work with. Valid values: GTA3, VC
